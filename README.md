@@ -6,12 +6,16 @@ This repository means to test the project [Go hibiken/asynq](https://github.com/
 
 ## Diagram for common jobs
 
+![Queue graphs](./files/queue_graphs.png)
+
 ![Go hibiken/asynq](./files/diagram_background_processor.jpg)
 
 
 ## Scheduled jobs
 
 ![Scheduled jobs](./files/scheduled_jobs.png)
+
+
 
 
 ## Running
