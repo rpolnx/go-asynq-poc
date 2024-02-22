@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"time"
 
 	"github.com/hibiken/asynq"
 	"github.com/rpolnx/go-asynq-poc/internal/configs"
@@ -21,6 +22,7 @@ func (c *Processor) HandleEmailDeliveryTask(ctx context.Context, t *asynq.Task) 
 	}
 	logrus.Infof("Sending Email to User: user_email=%s, job_id=%d", p.EmailAddress, p.JobId)
 	// Email delivery code ...
+	time.Sleep(1 * time.Second)
 	return nil
 }
 
@@ -31,6 +33,7 @@ func (c *Processor) HandleImageResizeTask(ctx context.Context, t *asynq.Task) er
 	}
 	logrus.Infof("Resizing image: source_url=%d, job_id=%d", p.SourceURL, p.JobId)
 	// Resizing image code ...
+	time.Sleep(3 * time.Second)
 	return nil
 }
 
@@ -40,7 +43,9 @@ func (c *Processor) HandleScheduledJob(ctx context.Context, t *asynq.Task) error
 		return fmt.Errorf("json.Unmarshal failed: %v: %w", err, asynq.SkipRetry)
 	}
 	logrus.Infof("Sending Email to User: user_id=%d, job_id=%d", p.UserId, p.JobId)
+	time.Sleep(3 * time.Second)
 	// Scheduled Job code ...
+	time.Sleep(3 * time.Second)
 	return nil
 }
 

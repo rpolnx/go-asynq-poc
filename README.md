@@ -16,6 +16,11 @@ This repository means to test the project [Go hibiken/asynq](https://github.com/
 ![Scheduled jobs](./files/scheduled_jobs.png)
 
 
+## Tasks processing
+
+![Tasks processing](./files/jobs_processing.png)
+
+
 
 
 ## Running

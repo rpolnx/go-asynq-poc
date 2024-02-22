@@ -38,7 +38,7 @@ func main() {
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 		for idx := 0; ; idx++ {
-			time.Sleep(time.Second * time.Duration(5))
+			time.Sleep(time.Millisecond * time.Duration(500))
 			t1, err := enqueuer.NewEmailDeliveryTask(idx)
 			if err != nil {
 				logrus.Errorln(err)
@@ -76,14 +76,15 @@ func main() {
 		}
 	}()
 
+	go func() {
+		// time.Sleep(time.Minute * time.Duration(5))
+		time.Sleep(time.Second * time.Duration(60))
+		processorServer.Shutdown()
+	}()
+
 	serverHost := fmt.Sprintf("%s:%d", configs.GlobalAppConfig.Host, configs.GlobalAppConfig.Port)
 	if err = server.Engine.Run(serverHost); err != nil {
 		logrus.Fatalln(err)
 	}
-
-	go func() {
-		time.Sleep(time.Minute * time.Duration(5))
-		processorServer.Shutdown()
-	}()
 
 }
